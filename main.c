@@ -6,8 +6,16 @@
 /*   By: jukerste <jukerste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:52:27 by jukerste          #+#    #+#             */
-/*   Updated: 2025/07/02 16:53:34 by jukerste         ###   ########.fr       */
+/*   Updated: 2025/07/10 16:11:14 by jukerste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	main(int argc, char **argv)
+{
+	if (argc == 5)
+	{
+		
+	}
+}
