@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jul <jul@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: kat <kat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:21:50 by jukerste          #+#    #+#             */
-/*   Updated: 2025/07/11 15:57:44 by jul              ###   ########.fr       */
+/*   Updated: 2025/07/14 18:59:57 by kat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_rules
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
+	int				meals_eaten;
 	int				must_eat_count;
 	int				philo_died;
 	long			start_time;
@@ -48,5 +49,6 @@ typedef struct s_rules
 long	ft_atol(char const *str);
 int		is_only_digits(char *str);
 int		parse_args(int argc, char **argv, t_rules *rules);
+int		philosophers_and_forks(t_rules *rules);
 
 #endif
