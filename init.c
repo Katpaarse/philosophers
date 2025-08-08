@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kat <kat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jukerste <jukerste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 16:18:45 by jul               #+#    #+#             */
-/*   Updated: 2025/07/14 19:15:28 by kat              ###   ########.fr       */
+/*   Updated: 2025/08/08 16:06:55 by jukerste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	philosophers_and_forks(t_rules *rules)
 		rules->philos[i].rules = rules;
 		rules->philos[i].left_fork = &rules->forks[i];
 		rules->philos[i].right_fork = &rules->forks[(i + 1) % rules->total_philos];
+		i++;
 	}
 	return (0);
 }

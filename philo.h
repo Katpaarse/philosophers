@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kat <kat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jukerste <jukerste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:21:50 by jukerste          #+#    #+#             */
-/*   Updated: 2025/07/14 18:59:57 by kat              ###   ########.fr       */
+/*   Updated: 2025/08/08 15:09:46 by jukerste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ long	ft_atol(char const *str);
 int		is_only_digits(char *str);
 int		parse_args(int argc, char **argv, t_rules *rules);
 int		philosophers_and_forks(t_rules *rules);
+void	*philo_routine(void *arg);
 
 #endif
