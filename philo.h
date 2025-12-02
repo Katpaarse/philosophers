@@ -6,7 +6,7 @@
 /*   By: jukerste <jukerste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:21:50 by jukerste          #+#    #+#             */
-/*   Updated: 2025/08/08 15:09:46 by jukerste         ###   ########.fr       */
+/*   Updated: 2025/12/02 14:27:42 by jukerste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct	s_philo
 {
 	int				id;
 	int				meals_eaten;
+	long			last_meal_time;
 	pthread_t		thread;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
@@ -44,6 +45,8 @@ typedef struct s_rules
 	int				philo_died;
 	long			start_time;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	death_mutex;
 }	t_rules;
 
 long	ft_atol(char const *str);
@@ -51,5 +54,9 @@ int		is_only_digits(char *str);
 int		parse_args(int argc, char **argv, t_rules *rules);
 int		philosophers_and_forks(t_rules *rules);
 void	*philo_routine(void *arg);
+long	get_time_in_ms(void);
+void	print_status(t_philo *philo, char *status);
+void	smart_sleep(long milliseconds);
+int		is_sim_over(t_rules *rules);
 
 #endif
