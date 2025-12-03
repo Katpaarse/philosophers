@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jul <jul@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jukerste <jukerste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:00:13 by jukerste          #+#    #+#             */
-/*   Updated: 2025/12/02 19:35:33 by jul              ###   ########.fr       */
+/*   Updated: 2025/12/03 16:24:43 by jukerste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,18 @@ void	*philo_routine(void *arg)
 		// B. eating logic
 		pthread_mutex_lock(philo->left_fork);
 		print_status(philo, "has taken a fork");
-		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_lock(philo->right_fork);
 		print_status(philo, "has taken a fork");
+		pthread_mutex_lock(&rules->death_mutex);
+		philo->last_meal_time = get_time_in_ms();
+		pthread_mutex_unlock(&rules->death_mutex);
+		print_status(philo, "is eating");
+		smart_sleep(rules->time_to_eat);
+		philo->meals_eaten++;
+		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
+		print_status(philo, "is sleeping");
+		smart_sleep(rules->time_to_sleep);
 	}
 	return (NULL);
 }
