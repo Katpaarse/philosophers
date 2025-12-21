@@ -6,7 +6,7 @@
 /*   By: jul <jul@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:52:27 by jukerste          #+#    #+#             */
-/*   Updated: 2025/12/21 14:23:45 by jul              ###   ########.fr       */
+/*   Updated: 2025/12/21 19:11:55 by jul              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int argc, char **argv)
 	pthread_t	monitor;
 	int			i;
 
+	init_rules(&rules);
 	if (parse_args(argc, argv, &rules) == 1)
 	{
 		printf("Error: Invalid arguments\n");
@@ -29,6 +30,14 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	rules.start_time = get_time_in_ms();
+	i = 0;
+	while (i < rules.total_philos)
+	{
+		pthread_mutex_lock(&rules.death_mutex);
+		rules.philos[i].last_meal_time = rules.start_time;
+		pthread_mutex_unlock(&rules.death_mutex);
+		i++;
+	}
 	if (pthread_create(&monitor, NULL, monitor_routine, &rules) != 0)
 	{
 		cleanup(&rules);
@@ -64,12 +73,6 @@ int	main(int argc, char **argv)
 	}
 	pthread_mutex_destroy(&rules.print_mutex);
 	pthread_mutex_destroy(&rules.death_mutex);
-	// printf("Philosophers: %d\n", rules.total_philos);
-	// printf("Time to die: %d\n", rules.time_to_die);
-	// printf("Time to eat: %d\n", rules.time_to_eat);
-	// printf("Time to sleep: %d\n", rules.time_to_sleep);
-	if (rules.must_eat_count != -1)
-		printf("Must eat count: %d\n", rules.must_eat_count);
 	free(rules.forks);
 	free(rules.philos);
 	return (0);

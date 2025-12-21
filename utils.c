@@ -6,7 +6,7 @@
 /*   By: jul <jul@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:52:32 by jukerste          #+#    #+#             */
-/*   Updated: 2025/12/20 14:29:04 by jul              ###   ########.fr       */
+/*   Updated: 2025/12/21 17:01:03 by jul              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,17 @@ long	ft_atol(char const *str)
 	i = 0;
 	sign = 1;
 	return (ft_atol_converter(str, i, sign));
+}
+
+void	init_rules(t_rules *rules)
+{
+	rules->total_philos = 0;
+	rules->time_to_die = 0;
+	rules->time_to_eat = 0;
+	rules->time_to_sleep = 0;
+	rules->must_eat_count = -1;
+	rules->philo_died = 0;
+	rules->start_time = 0;
+	rules->forks = NULL;
+	rules->philos = NULL;
 }

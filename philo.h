@@ -6,7 +6,7 @@
 /*   By: jul <jul@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:21:50 by jukerste          #+#    #+#             */
-/*   Updated: 2025/12/21 14:33:47 by jul              ###   ########.fr       */
+/*   Updated: 2025/12/21 17:01:16 by jul              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ void	smart_sleep(long ms);
 int		is_sim_over(t_rules *rules);
 void	*monitor_routine(void *arg);
 void	cleanup(t_rules *rules);
+void	init_rules(t_rules *rules);
 
 #endif
