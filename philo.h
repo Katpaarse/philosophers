@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jukerste <jukerste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jul <jul@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:21:50 by jukerste          #+#    #+#             */
-/*   Updated: 2025/12/02 14:27:42 by jukerste         ###   ########.fr       */
+/*   Updated: 2025/12/21 14:33:47 by jul              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ int		philosophers_and_forks(t_rules *rules);
 void	*philo_routine(void *arg);
 long	get_time_in_ms(void);
 void	print_status(t_philo *philo, char *status);
-void	smart_sleep(long milliseconds);
+void	smart_sleep(long ms);
 int		is_sim_over(t_rules *rules);
+void	*monitor_routine(void *arg);
+void	cleanup(t_rules *rules);
 
 #endif

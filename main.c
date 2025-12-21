@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jukerste <jukerste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jul <jul@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:52:27 by jukerste          #+#    #+#             */
-/*   Updated: 2025/08/08 15:58:33 by jukerste         ###   ########.fr       */
+/*   Updated: 2025/12/21 14:23:45 by jul              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int	main(int argc, char **argv)
 {
-	t_rules	rules;
-	int	i;
+	t_rules		rules;
+	pthread_t	monitor;
+	int			i;
 
 	if (parse_args(argc, argv, &rules) == 1)
 	{
@@ -24,7 +25,13 @@ int	main(int argc, char **argv)
 	}
 	if (philosophers_and_forks(&rules) == 1)
 	{
-		printf("Error: Failed to initialize philosophers and forks");
+		printf("Error: Failed to initialize philosophers and forks\n");
+		return (1);
+	}
+	rules.start_time = get_time_in_ms();
+	if (pthread_create(&monitor, NULL, monitor_routine, &rules) != 0)
+	{
+		cleanup(&rules);
 		return (1);
 	}
 	i = 0;
@@ -32,11 +39,17 @@ int	main(int argc, char **argv)
 	{
 		if (pthread_create(&rules.philos[i].thread, NULL, philo_routine, &rules.philos[i]) != 0)
 		{
-			printf("Error: Thread creation failed");
+			printf("Error: Failed to create philosopher thread\n");
+			pthread_mutex_destroy(&rules.death_mutex);
+			rules.philo_died = 1;
+			pthread_mutex_unlock(&rules.death_mutex);
+			pthread_join(monitor, NULL);
+			cleanup(&rules);
 			return (1);
 		}
 		i++;
 	}
+	pthread_join(monitor, NULL);
 	i = 0;
 	while (i < rules.total_philos)
 	{
@@ -49,10 +62,12 @@ int	main(int argc, char **argv)
 		pthread_mutex_destroy(&rules.forks[i]);
 		i++;
 	}
-	printf("Philosophers: %d\n", rules.total_philos);
-	printf("Time to die: %d\n", rules.time_to_die);
-	printf("Time to eat: %d\n", rules.time_to_eat);
-	printf("Time to sleep: %d\n", rules.time_to_sleep);
+	pthread_mutex_destroy(&rules.print_mutex);
+	pthread_mutex_destroy(&rules.death_mutex);
+	// printf("Philosophers: %d\n", rules.total_philos);
+	// printf("Time to die: %d\n", rules.time_to_die);
+	// printf("Time to eat: %d\n", rules.time_to_eat);
+	// printf("Time to sleep: %d\n", rules.time_to_sleep);
 	if (rules.must_eat_count != -1)
 		printf("Must eat count: %d\n", rules.must_eat_count);
 	free(rules.forks);
