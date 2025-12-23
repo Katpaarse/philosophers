@@ -6,7 +6,7 @@
 /*   By: jukerste <jukerste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:25:07 by jukerste          #+#    #+#             */
-/*   Updated: 2025/12/22 15:08:10 by jukerste         ###   ########.fr       */
+/*   Updated: 2025/12/23 13:04:18 by jukerste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ void	*monitor_routine(void *arg)
 				return (NULL);
 			}
 		}
-		usleep(1000);
+		usleep(500);
 	}
 }

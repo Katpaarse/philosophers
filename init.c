@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jul <jul@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jukerste <jukerste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 16:18:45 by jul               #+#    #+#             */
-/*   Updated: 2025/12/21 19:02:44 by jul              ###   ########.fr       */
+/*   Updated: 2025/12/23 14:21:37 by jukerste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	philosophers_and_forks(t_rules *rules)
+static int	init_mutexes(t_rules *rules)
 {
 	int	i;
 
@@ -31,6 +31,13 @@ int	philosophers_and_forks(t_rules *rules)
 			return (1);
 		i++;
 	}
+	return (0);
+}
+
+static int	create_philos(t_rules *rules)
+{
+	int	i;
+
 	rules->philos = malloc(sizeof(t_philo) * rules->total_philos);
 	if (!rules->philos)
 		return (1);
@@ -42,8 +49,19 @@ int	philosophers_and_forks(t_rules *rules)
 		rules->philos[i].last_meal_time = 0;
 		rules->philos[i].rules = rules;
 		rules->philos[i].left_fork = &rules->forks[i];
-		rules->philos[i].right_fork = &rules->forks[(i + 1) % rules->total_philos];
+		rules->philos[i].right_fork = &rules->forks[(i + 1)
+			% rules->total_philos];
 		i++;
 	}
+	return (0);
+}
+
+int	philosophers_and_forks(t_rules *rules)
+{
+	rules->philo_died = 0;
+	if (init_mutexes(rules) != 0)
+		return (1);
+	if (create_philos(rules) != 0)
+		return (1);
 	return (0);
 }

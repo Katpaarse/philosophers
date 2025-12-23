@@ -6,7 +6,7 @@
 /*   By: jukerste <jukerste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:00:13 by jukerste          #+#    #+#             */
-/*   Updated: 2025/12/23 12:04:19 by jukerste         ###   ########.fr       */
+/*   Updated: 2025/12/23 18:25:58 by jukerste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	*philo_routine(void *arg)
 		pthread_mutex_unlock(&rules->death_mutex);
 		smart_sleep(rules->time_to_die);
 		pthread_mutex_unlock(philo->left_fork);
-		return(NULL);
+		return (NULL);
 	}
 	// 1. delayed start for even ID philos. To prevent deadlock
 	if (philo->id % 2 == 0)
@@ -40,6 +40,7 @@ void	*philo_routine(void *arg)
 	{
 		// A. Think
 		print_status(philo, "is thinking");
+		usleep(1000);
 		
 		// B. eating logic
 		pthread_mutex_lock(philo->left_fork);
