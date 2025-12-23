@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jul <jul@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jukerste <jukerste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:25:07 by jukerste          #+#    #+#             */
-/*   Updated: 2025/12/21 19:08:03 by jul              ###   ########.fr       */
+/*   Updated: 2025/12/22 15:08:10 by jukerste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	*monitor_routine(void *arg)
 			pthread_mutex_unlock(&rules->death_mutex);
 			i++;
 		}
-		if (rules->must_eat_count != 1)
+		if (rules->must_eat_count != -1)
 		{
 			all_ate_enough = 1;
 			i = 0;
