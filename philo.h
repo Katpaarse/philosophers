@@ -6,7 +6,7 @@
 /*   By: jul <jul@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:21:50 by jukerste          #+#    #+#             */
-/*   Updated: 2025/12/21 17:01:16 by jul              ###   ########.fr       */
+/*   Updated: 2026/01/05 02:49:59 by jul              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_philo
 	pthread_t		thread;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
+	pthread_mutex_t meal_mutex;
 	struct	s_rules	*rules;
 }	t_philo;
 
@@ -56,7 +57,7 @@ int		philosophers_and_forks(t_rules *rules);
 void	*philo_routine(void *arg);
 long	get_time_in_ms(void);
 void	print_status(t_philo *philo, char *status);
-void	smart_sleep(long ms);
+void	smart_sleep(long ms, t_rules *rules);
 int		is_sim_over(t_rules *rules);
 void	*monitor_routine(void *arg);
 void	cleanup(t_rules *rules);
