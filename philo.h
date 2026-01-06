@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jul <jul@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jukerste <jukerste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:21:50 by jukerste          #+#    #+#             */
-/*   Updated: 2026/01/05 02:49:59 by jul              ###   ########.fr       */
+/*   Updated: 2026/01/06 17:29:26 by jukerste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # include <limits.h>
 # include <unistd.h>
 
-struct s_rules;
+struct	s_rules;
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	int				id;
 	int				meals_eaten;
@@ -30,8 +30,8 @@ typedef struct	s_philo
 	pthread_t		thread;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	pthread_mutex_t meal_mutex;
-	struct	s_rules	*rules;
+	pthread_mutex_t	meal_mutex;
+	struct s_rules	*rules;
 }	t_philo;
 
 typedef struct s_rules
@@ -62,5 +62,6 @@ int		is_sim_over(t_rules *rules);
 void	*monitor_routine(void *arg);
 void	cleanup(t_rules *rules);
 void	init_rules(t_rules *rules);
+void	*single_philo_case(t_philo *philo);
 
 #endif

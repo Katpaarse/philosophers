@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jul <jul@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jukerste <jukerste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 16:18:45 by jul               #+#    #+#             */
-/*   Updated: 2026/01/05 02:53:30 by jul              ###   ########.fr       */
+/*   Updated: 2026/01/06 13:19:06 by jukerste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static int	create_philos(t_rules *rules)
 		rules->philos[i].last_meal_time = get_time_in_ms();
 		rules->philos[i].rules = rules;
 		rules->philos[i].left_fork = &rules->forks[i];
-		rules->philos[i].right_fork = &rules->forks[(i + 1) % rules->total_philos];
+		rules->philos[i].right_fork = &rules->forks[(i + 1)
+			% rules->total_philos];
 		if (pthread_mutex_init(&rules->philos[i].meal_mutex, NULL) != 0)
 			return (1);
 		i++;

@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rules_init.c                                       :+:      :+:    :+:   */
+/*   single_philo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jukerste <jukerste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/23 13:26:37 by jukerste          #+#    #+#             */
-/*   Updated: 2026/01/06 17:29:50 by jukerste         ###   ########.fr       */
+/*   Created: 2026/01/06 17:22:37 by jukerste          #+#    #+#             */
+/*   Updated: 2026/01/06 17:22:44 by jukerste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	init_rules(t_rules *rules)
+void	*single_philo_case(t_philo *philo)
 {
-	rules->total_philos = 0;
-	rules->time_to_die = 0;
-	rules->time_to_eat = 0;
-	rules->time_to_sleep = 0;
-	rules->must_eat_count = -1;
-	rules->philo_died = 0;
-	rules->start_time = 0;
-	rules->forks = NULL;
-	rules->philos = NULL;
+	pthread_mutex_lock(philo->left_fork);
+	print_status(philo, "has taken a fork");
+	smart_sleep(philo->rules->time_to_die, philo->rules);
+	pthread_mutex_unlock(philo->left_fork);
+	return (NULL);
 }
