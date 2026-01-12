@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jukerste <jukerste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jul <jul@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 16:21:50 by jukerste          #+#    #+#             */
-/*   Updated: 2026/01/06 17:29:26 by jukerste         ###   ########.fr       */
+/*   Updated: 2026/01/13 00:20:51 by jul              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	*philo_routine(void *arg);
 long	get_time_in_ms(void);
 void	print_status(t_philo *philo, char *status);
 void	smart_sleep(long ms, t_rules *rules);
-int		is_sim_over(t_rules *rules);
 void	*monitor_routine(void *arg);
 void	cleanup(t_rules *rules);
 void	init_rules(t_rules *rules);

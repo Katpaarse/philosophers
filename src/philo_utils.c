@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jukerste <jukerste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jul <jul@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 13:08:00 by jukerste          #+#    #+#             */
-/*   Updated: 2026/01/06 17:28:18 by jukerste         ###   ########.fr       */
+/*   Updated: 2026/01/13 00:20:45 by jul              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,6 @@ void	smart_sleep(long ms, t_rules *rules)
 			break ;
 		usleep(500);
 	}
-}
-
-int	is_sim_over(t_rules *rules)
-{
-	int	sim_ended;
-
-	pthread_mutex_lock(&rules->death_mutex);
-	sim_ended = rules->philo_died;
-	pthread_mutex_unlock(&rules->death_mutex);
-	return (sim_ended);
 }
 
 void	cleanup(t_rules *rules)

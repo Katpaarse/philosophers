@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jukerste <jukerste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jul <jul@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:25:07 by jukerste          #+#    #+#             */
-/*   Updated: 2026/01/06 15:56:46 by jukerste         ###   ########.fr       */
+/*   Updated: 2026/01/13 00:21:33 by jul              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ static int	check_all_ate(t_rules *rules)
 	int	i;
 	int	all_ate;
 
-	i = 0;
 	all_ate = 1;
 	if (rules->must_eat_count == -1)
-		return (0);
+	return (0);
+	i = 0;
 	while (i < rules->total_philos)
 	{
 		pthread_mutex_lock(&rules->philos[i].meal_mutex);
